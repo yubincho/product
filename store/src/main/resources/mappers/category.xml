@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="category">
+
+	<select id="getCategList" resultType="com.example.store.model.CategoryDTO">
+		SELECT
+			IDX
+			, CODE
+			, CODENAME
+			, SORT_NUM
+			, COMMENT
+		FROM
+			CATEGORY
+		ORDER BY IDX DESC, CODE ASC
+	</select>
+	
+	<insert id="saveCategory" parameterType="com.example.store.model.CategoryDTO">
+		INSERT INTO CATEGORY(CODE, CODENAME, COMMENT, REG_DATE)
+		VALUES (
+			#{code}
+			, #{codename}
+			, #{comment}
+			, now()
+		)
+	</insert>
+	
+	<update id="updateCateg" parameterType="com.example.store.model.CategoryDTO">
+		UPDATE CATEGORY SET
+			CODENAME = #{codename}
+			, COMMENT = #{comment}
+		WHERE
+			idx = #{idx}
+	</update>
+	
+	<delete id="deleteCateg" parameterType="String">
+		DELETE FROM CATEGORY
+		WHERE
+			CODE = #{code}
+	</delete>	
+
+
+
+</mapper>

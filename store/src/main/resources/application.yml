@@ -1,0 +1,45 @@
+server:
+  port: 80
+  tomcat:
+    max-swallow-size: -1
+    max-http-form-post-size: -1
+  servlet:
+    context-path: /prodc
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+     # error 커스터마이징을 위해 false로 설정
+  error:
+    whitelabel:
+      enabled: false 
+ 
+logging:
+  level:
+    web: trace
+     
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  web:
+    log-details: true
+      
+  # 파일 업로드 설정
+  servlet:
+    multipart: 
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+      
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/prodc?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+    
+mybatis: 
+  mapper-locations: classpath:mappers/**/*.xml 
+    
